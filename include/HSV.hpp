@@ -10,8 +10,8 @@ namespace ruezo {
       uint8_t s;
       uint8_t v;
 
-      HSV() : h(0.0f), s(0), v(0) {}
-      HSV(float hh, uint8_t ss, uint8_t vv) : h(hh), s(ss), v(vv) {}
+      HSV();
+      HSV(float hh, uint8_t ss, uint8_t vv);
 
       bool isGreen();
       bool isRed();
@@ -31,4 +31,3 @@ namespace ruezo {
       ruezo::RGB getNoColor();
    };
 }
-

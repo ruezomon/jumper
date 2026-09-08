@@ -66,9 +66,9 @@ ruezo::RGB ruezo::HSV::getRGB() {
 
    if (hh < 0.0f) hh += 360;
 
-   double c = v * s;
+   double c = vv * ss;
    double x = c * (1.0 - std::fabs(std::fmod(h / 60.0, 2.0) - 1.0));
-   double m = v - c;
+   double m = vv - c;
 
    double rPrime = 0.0;
    double gPrime = 0.0;

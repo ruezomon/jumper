@@ -2,6 +2,10 @@
 
 #include "RGB.hpp"
 
+ruezo::RGB::RGB() : r(0), g(0), b(0) {}
+
+ruezo::RGB::RGB(uint8_t rr, uint8_t gg, uint8_t bb) : r(rr), g(gg), b(bb) {}
+
 ruezo::HSV ruezo::RGB::toHSV() {
     enum COLORS {r, g, b};
     float h;
@@ -33,5 +37,9 @@ ruezo::HSV ruezo::RGB::toHSV() {
 
     v = static_cast<uint8_t>(maxVal * 255);
 
-    return HSV(h, s, v);
+    return ruezo::HSV(h, s, v);
+}
+
+bool ruezo::RGB::like(ruezo::RGB other) {
+    return this->r == other.r && this->b == other.b && this->g == other.g;
 }

@@ -6,18 +6,15 @@
 namespace ruezo {
     class RGB {
     public:
-    uint8_t r;
-    uint8_t g;
-    uint8_t b;
+        uint8_t r;
+        uint8_t g;
+        uint8_t b;
 
-    RGB() : r(0), g(0), b(0) {}
-    RGB(uint8_t rr, uint8_t gg, uint8_t bb) : r(rr), g(gg), b(bb) {}
+        RGB();
+        RGB(uint8_t rr, uint8_t gg, uint8_t bb);
 
-    ruezo::HSV toHSV();
+        ruezo::HSV toHSV();
 
-    inline bool like(RGB other) {
-        return this->r == other.r && this->b == other.b && this->g == other.g;
-    }
-
+        bool like(RGB other);
     };
 }
