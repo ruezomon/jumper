@@ -1,9 +1,11 @@
 #pragma once
 
 #include <stdint.h>
-#include "RGB.hpp"
 
 namespace ruezo {
+
+   class RGB;
+
    class HSV {
    public:
       float h;

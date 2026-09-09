@@ -3,8 +3,7 @@
 #include <functional>
 #include <cmath>
 
-#include "RGB.hpp"
-#include "HSV.hpp"
+#include "Colors.hpp"
 
 ruezo::HSV::HSV() : h(0.0f), s(0), v(0) {}
 

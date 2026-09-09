@@ -1,9 +1,11 @@
 #pragma once
 
 #include <stdint.h>
-#include "HSV.hpp"
 
 namespace ruezo {
+
+    class HSV;
+
     class RGB {
     public:
         uint8_t r;

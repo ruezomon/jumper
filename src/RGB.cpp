@@ -1,6 +1,6 @@
 #include <cmath>
 
-#include "RGB.hpp"
+#include "Colors.hpp"
 
 ruezo::RGB::RGB() : r(0), g(0), b(0) {}
 
