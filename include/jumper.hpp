@@ -1,0 +1,5 @@
+#include "Colors.hpp"
+#include "FrameHandler.hpp"
+#include "GameHandler.hpp"
+#include "Image.hpp"
+#include "Player.hpp"
