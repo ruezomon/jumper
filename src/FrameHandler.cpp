@@ -2,8 +2,11 @@
 #include "RGB.hpp"
 #include "InitializeException.hpp"
 
-ruezo::FrameHandler::FrameHandler(int width, int height) : 
-    img(ruezo::Image(height, width)), pixelBuffer(new int[width * height * 4]), sprite(sf::Sprite(texture)), window(sf::RenderWindow(sf::VideoMode({width, height}), "Jumper", sf::Style::Close)) {
+ruezo::FrameHandler::FrameHandler(int width, int height, int pixelSize) : 
+    img(ruezo::Image(height, width)), pixelBuffer(new int[width * height * 4]), 
+    sprite(sf::Sprite(texture)), 
+    window(sf::RenderWindow(sf::VideoMode({static_cast<uint8_t>(width), static_cast<uint8_t>(height)}), "Jumper", sf::Style::Close)),
+    pixelSize(pixelSize) {
         this->t = new std::thread([this]() {
             while (this->t_flag) {
                 this->elapsed += 0.01;

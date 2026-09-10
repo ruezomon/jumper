@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Image.hpp"
+
 namespace ruezo {
     class FrameHandler;
     class Player;
@@ -14,5 +16,7 @@ namespace ruezo {
 
     public:
         GameHandler(int width, int height);
+        void startGame();
+        ruezo::Image makeFrame();
     };
 }

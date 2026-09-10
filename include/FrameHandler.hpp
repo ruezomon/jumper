@@ -15,9 +15,12 @@ namespace ruezo {
         ruezo::GameHandler* gh = nullptr;
         int x = 0;
         int y = 0;
+        int pixelSize;
+
         double elapsed = 0.0f;
         std::thread* t = nullptr;
         bool t_flag = true;
+
         std::thread* dt = nullptr;
 
         sf::Texture texture;
@@ -25,7 +28,7 @@ namespace ruezo {
         sf::RenderWindow window;
 
     public:
-        FrameHandler(int width, int height);
+        FrameHandler(int width, int height, int pixelSize);
         ~FrameHandler();
         int* getPixelBuffer();
         ruezo::Image& getImage();
