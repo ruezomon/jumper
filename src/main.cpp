@@ -3,11 +3,9 @@
 
 int main() {
     
-    ruezo::GameHandler gh(10, 10);
-    ruezo::GameHandler gh2(10, 10);
-    ruezo::Player p(5, 5);
-    p.linkGame(&gh);
-    p.linkGame(&gh2);
+    ruezo::FrameHandler fh(10 , 10);
+    std::this_thread::sleep_for(std::chrono::microseconds(1));
+    std::cout << fh.getDeltaTime() << std::endl;
 
     return 0;
 }
