@@ -27,7 +27,6 @@ int* ruezo::FrameHandler::getPixelBuffer() {
     return this->pixelBuffer;
 }
 
-<<<<<<< HEAD
 void ruezo::FrameHandler::updateBuffer() {
     for (int j = 0; j < img.h; j++) {
         for (int i = 0; i < img.w; i++) {
@@ -39,7 +38,7 @@ void ruezo::FrameHandler::updateBuffer() {
         }
     }
 }
-=======
+
 void ruezo::FrameHandler::initGame(ruezo::GameHandler* gh) {
     if (this->gh == nullptr) this->gh = gh;
     else throw ruezo::InitializeException("GameHandler can only be initialized once", 2);
@@ -50,4 +49,3 @@ double ruezo::FrameHandler::getDeltaTime() {
     this->elapsed = 0.0f;
     return r;
 }
->>>>>>> refs/remotes/origin/main
