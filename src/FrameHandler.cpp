@@ -3,7 +3,7 @@
 #include "InitializeException.hpp"
 
 ruezo::FrameHandler::FrameHandler(int width, int height) : 
-    img(ruezo::Image(height, width)), pixelBuffer(new int[width * height * 4]) {
+    img(ruezo::Image(height, width)), pixelBuffer(new int[width * height * 4]), sprite(sf::Sprite(texture)), window(sf::RenderWindow(sf::VideoMode({width, height}), "Jumper", sf::Style::Close)) {
         this->t = new std::thread([this]() {
             while (this->t_flag) {
                 this->elapsed += 0.01;
@@ -28,15 +28,14 @@ int* ruezo::FrameHandler::getPixelBuffer() {
 }
 
 void ruezo::FrameHandler::updateBuffer() {
-    for (int j = 0; j < img.h; j++) {
-        for (int i = 0; i < img.w; i++) {
-            ruezo::RGB& im = img[i + (j * img.w)];
-            pixelBuffer[(i + j * img.w) * 4] = im.r;
-            pixelBuffer[(i + j * img.w) * 4 + 1] = im.g;
-            pixelBuffer[(i + j * img.w) * 4 + 2] = im.b;
-            pixelBuffer[(i + j * img.w) * 4 + 3] = 255;
-        }
+    for (int i = 0; i < img.w; i++) {
+        ruezo::RGB& im = img[i];
+        pixelBuffer[i * 4    ] = static_cast<uint8_t>(im.r);
+        pixelBuffer[i * 4 + 1] = static_cast<uint8_t>(im.g);
+        pixelBuffer[i * 4 + 2] = static_cast<uint8_t>(im.b);
+        pixelBuffer[i * 4 + 3] = 255;
     }
+    texture.update(std::vector<uint8_t>(pixelBuffer, pixelBuffer + (sizeof(pixelBuffer) / sizeof(pixelBuffer[0]))).data());
 }
 
 void ruezo::FrameHandler::initGame(ruezo::GameHandler* gh) {
@@ -48,4 +47,27 @@ double ruezo::FrameHandler::getDeltaTime() {
     double r = this->elapsed;
     this->elapsed = 0.0f;
     return r;
+}
+
+void ruezo::FrameHandler::display() {
+    this->dt = new std::thread([this]() {
+        while (this->window.isOpen()) {
+            while (const std::optional event = window.pollEvent()) {
+                if (event->is<sf::Event::Closed>()) {
+                    window.close();
+                }
+            }
+
+            this->updateBuffer();
+
+            window.clear(sf::Color::Black);
+            window.draw(sprite);
+            window.display();
+        }
+    });
+    this->dt->detach();
+}
+
+std::thread* ruezo::FrameHandler::getDisplayThread() {
+    return this->dt;
 }

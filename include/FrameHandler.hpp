@@ -1,6 +1,8 @@
 #pragma once
 
 #include <thread>
+#include <vector>
+#include <SFML/Graphics.hpp>
 
 #include "Image.hpp"
 #include "GameHandler.hpp"
@@ -16,6 +18,11 @@ namespace ruezo {
         double elapsed = 0.0f;
         std::thread* t = nullptr;
         bool t_flag = true;
+        std::thread* dt = nullptr;
+
+        sf::Texture texture;
+        sf::Sprite sprite;
+        sf::RenderWindow window;
 
     public:
         FrameHandler(int width, int height);
@@ -25,5 +32,7 @@ namespace ruezo {
         void updateBuffer();
         void initGame(ruezo::GameHandler* gh);
         double getDeltaTime(); // returns delta time in seconds
+        void display();
+        std::thread* getDisplayThread();
     };
 }
