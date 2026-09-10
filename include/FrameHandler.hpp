@@ -11,5 +11,6 @@ namespace ruezo {
         ~FrameHandler();
         int* getPixelBuffer();
         ruezo::Image& getImage();
+        void updateBuffer();
     };
 }
